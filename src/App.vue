@@ -73,9 +73,6 @@ onMounted(() => {
   }))
 
   if (flag.value) {
-    // (dragDomRef.value!.$el as HTMLElement).style.right = "24px";
-    // (dragDomRef.value!.$el as HTMLElement).style.top = "100px";
-
     var style = document.createElement('style');
     style.innerHTML = `@media print {${curr.class}, .mod, a.setpdf { display: none!important;} div.setpdf-copyright { display: block!important; }} ${curr.style}`;
     document.head.appendChild(style);
@@ -103,12 +100,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <button1 v-show="flag" @click="action" class="draggable" text="导出PDF" draggable="true" ref="dragDomRef" />
+  <button1 v-show="flag" @click="action" class="setpdf" text="导出PDF" draggable="true" ref="dragDomRef" />
   <loading1 v-show="flag && isShow" @dblclick="stop" />
 </template>
 
 <style scoped lang="less">
-.draggable {
+.setpdf {
   position: fixed;
   top: 100px;
   right: 24px;
