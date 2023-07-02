@@ -90,7 +90,7 @@ export class useDraggable {
         }
     }
 
-    private stopDragging = () => {
+    private stopDragging = (event: MouseEvent) => {
         // console.log("停止拖拽", this.startPosition);
         this.isDragging = false;
         window.removeEventListener("mousemove", this.dragging, false);
@@ -119,6 +119,10 @@ export class useDraggable {
     private unDraggable() {
         this.draggableElement?.setAttribute("draggable", "false");
         this.isDraggable = false
+    }
+
+    private preventDefault(event: Event) {
+        event.preventDefault();
     }
 
     destroy() {
