@@ -4,6 +4,7 @@ import { useDraggable } from './hooks/useDraggable';
 import button1 from "./components/Buttons/button1.vue";
 import loading1 from './components/Loadings/loading1.vue';
 import { rules } from "../config/rules";
+import { IRule } from '../config/types';
 
 // InstanceType：自动推导类型
 type Button1Ctx = InstanceType<typeof button1>;
@@ -60,7 +61,7 @@ const currentUrl = window.location.href;
 let curr = { url: "", name: "", class: "", style: "", target: "body" };
 const flag = ref(false);
 onMounted(() => {
-  flag.value = rules.some((e => {
+  flag.value = rules.some(((e: IRule) => {
     var reg = new RegExp(e.url);
     if (reg.test(currentUrl)) {
       curr.url = currentUrl;
