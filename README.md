@@ -1,18 +1,23 @@
-# Vue 3 + TypeScript + Vite
+# 网络文章导出pdf（油猴脚本）
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+> 本项目旧版代码在本项目的`/old`文件夹下
+> 本项目于`1.3.1`版本开始采用工程化的模式开发
+> 油猴脚本工程化由[vite-plugin-monkey](https://github.com/lisonge/vite-plugin-monkey)插件支持
 
-## Recommended IDE Setup
+## 简介
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+将一些主流的网站的文章，去除掉一些无关部分直接启动浏览器自带打印功能
 
-## Type Support For `.vue` Imports in TS
+仅适配A4页面大小,其他页面大小无法保证排版完整、美观
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+打印页面内容出现未加载的dom,说明该处没有加载完成,可多试几次
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+---
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+其实当网页加载的时候自己可以直接 Ctrl+P 触发打印
+
+之所以点击脚本设置的按钮时，会有一个从头到尾的滚动过程，是为了给一些dom元素加载的时间（例如比较大的图片、知乎的公式渲染等等，这些不能马上渲染的内容需要一点点时间）
+
+所以你在安装了此脚本之后，出现了“导出pdf”的按钮时，你可以不用点击（因为页面可能很长很长，还有些页面是有懒加载的推荐文章的，例如掘金），可以直接 Ctrl+P 触发打印。
+
+当然，发现有些图片或者dom没在打印预览页面显示的时候，你可以手动滚动页面到那一块，确保他加载好了，这个时候再 Ctrl+P 触发打印，应该就没问题了。
