@@ -6,6 +6,8 @@
 
 > 油猴脚本工程化由[vite-plugin-monkey](https://github.com/lisonge/vite-plugin-monkey)插件支持
 
+> [脚本安装地址](https://greasyfork.org/zh-CN/scripts/462793-%E6%96%87%E7%AB%A0%E5%AF%BC%E5%87%BA%E6%88%90pdf)
+
 ## 简介
 
 将一些主流的网站的文章，去除掉一些无关部分直接启动浏览器自带打印功能
