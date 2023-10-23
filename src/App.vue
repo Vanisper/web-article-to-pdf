@@ -58,7 +58,19 @@ function smoothScrollToBottom() {
   }
 }
 const currentUrl = window.location.href;
-let curr = { url: "", name: "", class: "", style: "", target: "body" };
+let curr = {
+  url: "", name: "", class: "", style: "",
+  /** 版权信息将插入的css选择器 */
+  target: "body",
+} as {
+  url: string;
+  name: string;
+  class: string;
+  style: string;
+  target: string;
+  js?: Function;
+  hideDefault?: boolean;
+};
 const flag = ref(false);
 onMounted(() => {
   flag.value = rules.some(((e: IRule) => {
@@ -68,13 +80,16 @@ onMounted(() => {
       curr.name = e.name;
       curr.class = e.class;
       curr.style = e.style;
+      curr.target = e.copyrightTarget || "body";
+      curr.js = e.javascript;
+      curr.hideDefault = e.hideDefault;
       return true;
     }
   }))
 
   if (flag.value) {
     var style = document.createElement('style');
-    style.innerHTML = `@media print {${curr.class}, .mod, a.setpdf { display: none!important;} div.setpdf-copyright { display: block!important; }} ${curr.style}`;
+    style.innerHTML = `@media print {${curr.class}, .mod, button.setpdf, .web-article-to-pdf { display: none!important;} div.setpdf-copyright { display: block!important; }} ${curr.style}`;
     document.head.appendChild(style);
 
     const target = document.querySelector(curr.target);
@@ -90,7 +105,11 @@ onMounted(() => {
     target!.appendChild(copyright);
     setTimeout(() => {
       draggableInstance = new useDraggable(dragDomRef.value!.$el);
+      curr.js && (() => {
+        curr.js()
+      })()
     }, 200)
+    curr.hideDefault && (flag.value = false)
   }
 })
 
